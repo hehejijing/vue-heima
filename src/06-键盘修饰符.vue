@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- 1. 绑定键盘按下事件.enter-回车 -->
-    <input type="text" @keyup.enter = 'enter'>
+    <input type="text" @keyup.enter="enter" />
     <!-- 2. 绑定键盘按下事件.esc修饰符 - 取消键 -->
-    <hr>
-    <input type="text" @keyup.esc = "esc">
+    <hr />
+    <input type="text" @keyup.esc="esc" />
   </div>
 </template>
 
@@ -12,11 +12,11 @@
 export default {
   methods: {
     enter () {
-      alert("我独自走在郊外的小路上");
+      alert("我独自走在郊外的小路上")
     },
-    esc() {
+    esc () {
       alert("我把糕点带给外婆尝一尝")
-    }
-  }
+    },
+  },
 }
 </script>

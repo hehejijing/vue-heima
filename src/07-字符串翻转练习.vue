@@ -9,21 +9,20 @@
 
 <script>
 export default {
-  data(){
+  data () {
     return {
-      msg: "Hello, World"
+      msg: "Hello, World",
     }
   },
   methods: {
-    btn() {
-      let arr = this.msg.split("");//将字符串转为数组
-      arr.reverse()//反转数组  会改变原数组
+    btn () {
+      let arr = this.msg.split("") //将字符串转为数组
+      arr.reverse() //反转数组  会改变原数组
       const str = arr.join("") //将数组拼接成字符串
       this.msg = str
 
-      
       // this.msg = this.msg.split("").reverse().join("");
-    }
-  }
+    },
+  },
 }
 </script>
