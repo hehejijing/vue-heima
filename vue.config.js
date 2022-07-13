@@ -6,5 +6,5 @@ module.exports = defineConfig({
   //   open: true,
   //   host:"localhost",
   // },
-  lintOnSave: false, //关闭代码检查工具 eslint
+  lintOnSave: true, //关闭代码检查工具 eslint
 })
