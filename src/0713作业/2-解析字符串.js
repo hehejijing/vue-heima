@@ -13,3 +13,23 @@ arr2.forEach(item => { // 遍历数组 并将值添加到对象当中
   obj[str1] = str2
 })
 console.log(obj)
+
+
+
+
+
+const process = (url)=>{
+  const index1 = url.indexOf('?'),
+        index2 = url.indexOf('#'),
+        params = url.slice(index1+1,index2 ).split('&')
+  return params.reduce((pre,curr)=>{
+    // [name,zhangsan]
+    // { name:zhangsan } 
+    const [key,value] = curr.split('=')
+    pre[key] = value
+    return pre
+  },{})
+}
+process(url)
+
+

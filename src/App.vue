@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="box" @click="print"></div>
+    <button @click="clickFn">弹窗</button>
   </div>
 </template>
 
@@ -8,32 +8,22 @@
 export default {
   data () {
     return {
-      flag: true,
       timer: "",
     }
   },
   methods: {
-    time () {
-      setTimeout(() => {
-        this.flag = true
-      }, 1000)
+    get () {
+      alert("我爱一条柴")
     },
-    print () {
-      if (this.flag) {
-        console.log(111)
-        this.flag = false
-
-        this.time()
-      }
+    time () {
+      this.timer = setTimeout(this.get, 3000)
+    },
+    clickFn () {
+      clearTimeout(this.timer)
+       this.timer = setTimeout(this.get, 3000)
     },
   },
 }
 </script>
 
-<style>
-.box {
-  width: 200px;
-  height: 200px;
-  background-color: lime;
-}
-</style>
+<style></style>

@@ -5,8 +5,8 @@ let arr = [{ a: 100 }, { a: 20 }, { a: -10 }]
 //currentIndex 非必选 为当前操作元素的索引
 //arr 非必选 为当前操作的数组
 //reduce  必须有return
-const sum = arr.reduce((total, currentValue, currentIndex,arr) => {
-  console.log(total, currentValue, currentIndex,arr)
+const sum = arr.reduce((total, currentValue) => {
+  // console.log(total, currentValue)
   return total + currentValue.a
-},0) //0 可选 为传递给函数的初始值 不写默认为0
+}, 0) //0  为传递给函数的初始值
 console.log(sum)
