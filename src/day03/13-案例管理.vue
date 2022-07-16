@@ -121,7 +121,7 @@ export default {
       return this.list.reduce((sum, obj) => (sum += obj.price), 0)
     },
     avgPrice () {
-      return (this.allprice / this.list.length).toFixed(2)
+      return (this.allprice / this.list.length).toFixed(2)//toFixed(2)保留两位小数
     },
   },
 }
