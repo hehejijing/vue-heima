@@ -20,14 +20,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in list" :key="item.id">
+          <tr v-for="(item, index) in list" :key="index">
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
+            <td :class="{ red: item.price > 100 }">{{ item.price }}</td>
+            <td>{{ item.time }}</td>
 
             <!-- 如果价格超过100，就有red这个类 -->
-            <td :class="item.price > 100 ? 'red' : ''">{{ item.price }}</td>
-            <td>{{ item.time | formatTime}}</td>
-            <td><a href="#" @click.prevent="del(item.id)">删除</a></td>
+            <td class="red"></td>
+            <td></td>
+            <td><a href="#">删除</a></td>
           </tr>
           <!-- 求和 -->
           <tr style="background-color: #eee">
@@ -35,19 +37,14 @@
             <td colspan="2">总价钱为: {{ allprice }}</td>
             <td colspan="2">平均价: {{ avgPrice }}</td>
           </tr>
-          <!-- <tr style="background-color: #EEE">
-              <td>统计:</td>
-              <td colspan="2">总价钱为: 0</td>
-              <td colspan="2">平均价: 0</td>
-          </tr> -->
         </tbody>
-        
-        <tfoot v-show="list.length == 0">
+        <!-- 
+        <tfoot >
           <tr>
             <td colspan="5" style="text-align: center">暂无数据</td>
           </tr>
         </tfoot>
-           
+            -->
       </table>
 
       <!-- 添加资产 -->
@@ -75,7 +72,7 @@
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <!-- 阻止表单提交 -->
-        <button class="btn btn-primary" @click.prevent="addFn">添加资产</button>
+        <button class="btn btn-primary" @click.prevent="add">添加资产</button>
       </form>
     </div>
   </div>
@@ -84,11 +81,9 @@
 <script>
 // 铺设页面 1. 表格样式正确展示 2.数据渲染到页面
 // 1. 下载bootstrap, main.js引入bootstrap.css
-
 //    yarn add bootstrap
 // 2. 把list数组 - 铺设表格
 // 3. 修改价格颜色 大于100 颜色为红
-import moment from 'moment'
 export default {
   name: "VueDemo",
   data () {
@@ -103,6 +98,24 @@ export default {
       price: 0,
     }
   },
+  methods: {
+    add () {
+      if (this.name.length == 0 || this.price == 0) {
+        this.name = ""
+        this.price = 0
+        alert("请输入内容")
+        return
+      }
+      this.list.push({
+        name: this.name,
+        price: this.price,
+        time: new Date(),
+        id: this.list[this.list.length - 1].id + 1,
+      })
+      this.name = ""
+      this.price = 0
+    },
+  },
   computed: {
     allprice () {
       return this.list.reduce((sum, obj) => (sum += obj.price), 0)
@@ -110,35 +123,6 @@ export default {
     avgPrice () {
       return (this.allprice / this.list.length).toFixed(2)
     },
-  },
-  filters: {
-    formatTime:val => {
-      return moment(val).format('YYYY-MM-DD')
-    }
-  },
-  methods: {
-    addFn () {
-      
-      if (!this.name.trim() || this.price.trim() == 0) {
-        this.name = ""
-        this.price = 0
-        return alert("不会打字？")
-      }
-      const id = this.list[this.list.length - 1]? this.list[this.list.length - 1].id + 1 : 100
-      this.list.push({
-        name: this.name,
-        price : this.price,
-        time : new Date(),
-        id: id
-
-      })
-      this.name = ""
-        this.price = 0
-    },
-    del (id) {
-      const index = this.list.findIndex(ele => ele.id == id)
-      this.list.splice(index, 1)
-    }
   },
 }
 </script>
