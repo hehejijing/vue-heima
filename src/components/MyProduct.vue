@@ -11,15 +11,15 @@
 export default {
   props: ["title", "price", "info", "index"],
   methods: {
-    kanjia() {
+    kanjia () {
       // props 属性现在是只读的，不允许你做修改
       // this.price--;
       // 子组件.$emit('自定义事件名称'， 参数)
-      this.$emit("del", this.index);
+      this.$emit("del", this.index)
       // 砍价 1
     },
   },
-};
+}
 </script>
 
 <style>

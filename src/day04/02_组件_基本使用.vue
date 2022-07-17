@@ -31,19 +31,19 @@
 // <PannelG></PannelG>
 // <PannelG/>
 // <pannel-g></pannel-g>
-import PannelL from "./components/Panel.vue";
-console.log(PannelL);
+import PannelL from "./components/Panel.vue"
+console.log(PannelL)
 export default {
-  data() {
+  data () {
     // 必须是函数 函数里边在返回一个对象
-    return {};
+    return {}
   },
   // data: {
   // },
   components: {
     PannelL1: PannelL,
   },
-};
+}
 </script>
 
 <style lang="less" scoped>

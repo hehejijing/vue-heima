@@ -1,74 +1,72 @@
 <template>
-  <div>
-    <p>请选择你要购买的书籍</p>
-    <ul v-for="(item, index) in arr" :key="index">
-      <li>
-        {{ item.name }}
-        <button @click="add(index)">买书</button>
-      </li>
-    </ul>
-    <table border="1" width="500" cellspacing="0">
-      <tr>
-        <th>序号</th>
-        <th>书名</th>
-        <th>单价</th>
-        <th>数量</th>
-        <th>合计</th>
-      </tr>
-      <tbody v-for="(item, index) in arr1" :key="index">
-        <tr>
-          <th>{{ index + 1 }}</th>
-          <th>{{ item.name }}</th>
-          <th>{{ item.price }}</th>
-          <th>{{ item.count + 1 }}</th>
-          <th>{{ (item.count + 1) * item.price }}</th>
-        </tr>
-      </tbody>
-    </table>
-    <p>总价格为:{{ allPrice }}</p>
+  <div class="app">
+    <like-dog
+      dogImgUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563813454815&di=ecdd2ebf479568453d704dffacdfa12c&imgtype=0&src=http%3A%2F%2Fwww.officedoyen.com%2Fuploads%2Fallimg%2F150408%2F1-15040Q10J5B0.jpg"
+    ></like-dog>
+    <like-dog
+      dogImgUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563813454815&di=ecdd2ebf479568453d704dffacdfa12c&imgtype=0&src=http%3A%2F%2Fwww.officedoyen.com%2Fuploads%2Fallimg%2F150408%2F1-15040Q10J5B0.jpg"
+    ></like-dog>
+    <like-dog
+      dogImgUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563813454815&di=ecdd2ebf479568453d704dffacdfa12c&imgtype=0&src=http%3A%2F%2Fwww.officedoyen.com%2Fuploads%2Fallimg%2F150408%2F1-15040Q10J5B0.jpg"
+    ></like-dog>
+    <like-dog
+      dogImgUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563813454815&di=ecdd2ebf479568453d704dffacdfa12c&imgtype=0&src=http%3A%2F%2Fwww.officedoyen.com%2Fuploads%2Fallimg%2F150408%2F1-15040Q10J5B0.jpg"
+    ></like-dog>
+    <like-dog
+      dogImgUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563813454815&di=ecdd2ebf479568453d704dffacdfa12c&imgtype=0&src=http%3A%2F%2Fwww.officedoyen.com%2Fuploads%2Fallimg%2F150408%2F1-15040Q10J5B0.jpg"
+    ></like-dog>
+    <like-dog
+      dogImgUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563813454815&di=ecdd2ebf479568453d704dffacdfa12c&imgtype=0&src=http%3A%2F%2Fwww.officedoyen.com%2Fuploads%2Fallimg%2F150408%2F1-15040Q10J5B0.jpg"
+    ></like-dog>
   </div>
 </template>
 
 <script>
+import likeDog from "./components/07-16作业临时.vue"
+
 export default {
+  components: {
+    likeDog: likeDog,
+  },
   data () {
     return {
+      aa: "http://nwzimg.wezhan.cn/contents/sitefiles2029/10146688/images/21129958.jpg",
+
       arr: [
         {
-          name: "水浒传",
-          price: 107,
-          count: 0,
+          dogImgUrl:
+            "http://nwzimg.wezhan.cn/contents/sitefiles2029/10146688/images/21129958.jpg",
+          dogName: "博美",
         },
         {
-          name: "西游记",
-          price: 192,
-          count: 0,
+          dogImgUrl:
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1224576619,1307855467&fm=26&gp=0.jpg",
+          dogName: "泰迪",
         },
         {
-          name: "三国演义",
-          price: 219,
-          count: 0,
+          dogImgUrl:
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2967740259,1518632757&fm=26&gp=0.jpg",
+          dogName: "金毛",
         },
         {
-          name: "红楼梦",
-          price: 178,
-          count: 0,
+          dogImgUrl:
+            "https://pic1.zhimg.com/80/v2-7ba4342e6fedb9c5f3726eb0888867da_1440w.jpg?source=1940ef5c",
+          dogName: "哈士奇",
+        },
+        {
+          dogImgUrl:
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563813435580&di=946902d419c3643e33a0c9113fc8d780&imgtype=0&src=http%3A%2F%2Fvpic.video.qq.com%2F3388556%2Fd0522aynh3x_ori_3.jpg",
+          dogName: "阿拉斯加",
+        },
+        {
+          dogImgUrl:
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563813454815&di=ecdd2ebf479568453d704dffacdfa12c&imgtype=0&src=http%3A%2F%2Fwww.officedoyen.com%2Fuploads%2Fallimg%2F150408%2F1-15040Q10J5B0.jpg",
+          dogName: "萨摩耶",
         },
       ],
-      arr1: [],
-      allPrice: 0,
     }
-  },
-  methods: {
-    add (index) {
-       this.allPrice = 0
-      this.arr1.indexOf(this.arr[index]) == -1
-        ? this.arr1.push(this.arr[index])
-        : this.arr1[this.arr1.indexOf(this.arr[index])]["count"]++
-        this.arr1.forEach((item) => {
-         this.allPrice += (item.count+1) * item.price
-      })
-    },
   },
 }
 </script>
+
+<style></style>

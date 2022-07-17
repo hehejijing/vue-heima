@@ -17,16 +17,16 @@
 
 <script>
 // 引入
-import PannelL from "./components/Panel.vue";
+import PannelL from "./components/01-Panel.vue"
 export default {
-  data() {
+  data () {
     return {
       test: "撒打算大",
-    };
+    }
   },
   components: {
     // PannelL: PannelL,
     PannelL,
   },
-};
+}
 </script>

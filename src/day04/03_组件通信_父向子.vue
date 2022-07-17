@@ -17,17 +17,17 @@
 
 <script>
 // 引入
-import MyProduct from "./components/MyProduct.vue";
+import MyProduct from "./components/MyProduct.vue"
 export default {
-  data() {
+  data () {
     return {
       msg: "超级好吃的口水鸡",
       info: "超级好吃的口水鸡",
-    };
+    }
   },
   components: {
     // MyProduct: MyProduct
     MyProduct,
   },
-};
+}
 </script>
