@@ -1,24 +1,38 @@
 <template>
-  <div id="app">
-    <table class="tb">
-      <tr>
-        <th>编号</th>
-        <th>品牌名称</th>
-        <th>创立时间</th>
-        <th>操作</th>
-      </tr>
-      <!-- 循环渲染的元素tr -->
-      <tr v-for="(item, index) in list" :key="item.id">
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.time}}</td>
-        <td>
-          <button @click="list.splice(index, 1)">删除</button>
-        </td>
-      </tr>
-      <tr v-if="list.length == 0">
-        <td colspan="4">没有数据咯~</td>
-      </tr>
+  <div>
+    <table border="1" width="700" style="border-collapse: collapse">
+      <caption>
+        购物车
+      </caption>
+      <thead>
+        <tr>
+          <th><input type="checkbox" v-model="isAll" /> <span>全选</span></th>
+          <th>名称</th>
+          <th>价格</th>
+          <th>数量</th>
+          <th>总价</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr v-for="(item, index) in goodList" :key="index">
+          <th><input type="checkbox" v-model="item.checked"/> <span></span></th>
+          <th>{{ item.name }}</th>
+          <th>{{ item.price }}</th>
+          <th>
+            <button @click="subtract(index)">-</button> {{ item.num }}
+            <button @click="add(index)">+</button>
+          </th>
+          <th>{{ item.price * item.num }}</th>
+          <th><button @click="goodList.splice(index, 1)">删除</button></th>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>合计:</td>
+          <td colspan="5"></td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </template>
@@ -27,42 +41,58 @@
 export default {
   data () {
     return {
-      list: [
-        { id: 1, name: "奔驰", time: "2020-08-01" },
-        { id: 2, name: "宝马", time: "2020-08-02" },
-        { id: 3, name: "奥迪", time: "2020-08-03" },
+      goodList: [
+        {
+          name: "诸葛亮",
+          price: 1000,
+          num: 1,
+          checked: false,
+        },
+        {
+          name: "蔡文姬",
+          price: 1500,
+          num: 1,
+          checked: false,
+        },
+        {
+          name: "妲己",
+          price: 2000,
+          num: 1,
+          checked: false,
+        },
+        {
+          name: "鲁班",
+          price: 2200,
+          num: 1,
+          checked: false,
+        },
       ],
     }
+  },
+  computed: {
+    isAll: {
+      set (val) {
+        this.goodList.forEach((item) => {
+          item.checked = val
+        })
+      },
+      get () {
+        return this.goodList.every((item) => item.checked == true)
+      },
+    },
+  },
+  methods: {
+    add (val) {
+      this.goodList[val].num += 1
+    },
+    subtract (val) {
+      if (this.goodList[val].num == 1) {
+        return this.goodList.splice(val, 1)
+      }
+      this.goodList[val].num -= 1
+    },
   },
 }
 </script>
 
-<style>
-#app {
-  width: 600px;
-  margin: 10px auto;
-}
-
-.tb {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.tb th {
-  background-color: #0094ff;
-  color: white;
-}
-
-.tb td,
-.tb th {
-  padding: 5px;
-  border: 1px solid black;
-  text-align: center;
-}
-
-.add {
-  padding: 5px;
-  border: 1px solid black;
-  margin-bottom: 10px;
-}
-</style>
+<style></style>

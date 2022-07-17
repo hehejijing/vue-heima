@@ -1,7 +1,7 @@
 <template>
   <div class="dog">
     <img
-      src='dogImgUrl'
+      :src='ImgUrl'
       alt=""
     />
     <p>{{dogName}}</p>
@@ -12,7 +12,7 @@
 export default {
 
 
-  props: ["dogImgUrl",'dogName'],
+  props: ["ImgUrl",'dogName'],
 }
 </script>
 
