@@ -66,10 +66,10 @@
         <div class="form-group">
           <div class="input-group">
             <input
-              type="text"
+              type="number"
               class="form-control"
               placeholder="价格"
-              v-model="price"
+              v-model.number="price"
             />
           </div>
         </div>
@@ -119,7 +119,7 @@ export default {
   methods: {
     addFn () {
       
-      if (!this.name.trim() || this.price.trim() == 0) {
+      if (!this.name.trim() || this.price.trim() == 0 )  {
         this.name = ""
         this.price = 0
         return alert("不会打字？")

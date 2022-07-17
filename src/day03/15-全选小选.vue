@@ -4,20 +4,16 @@
     <input type="checkbox" v-model="isAll" />
     <button @click="btn">反选</button>
     <ul>
-      <li v-for="(obj, index) in arr" :key="index">
-        <input type="checkbox" v-model="obj.c" />
-        <span>{{ obj.name }}</span>
+      <li v-for="(item, index) in arr" :key="index">
+        <!--  让item.c 关联选中状态 -->
+        <input type="checkbox" v-model="item.c" />
+        <span>{{ item.name }}</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-// 需求：
-// 1. 铺设数据
-// 2. 小选框都选中(手选), 全选自动选中
-// 3. 全选影响小选
-// 4. 反选
 export default {
   data () {
     return {
@@ -44,20 +40,19 @@ export default {
   computed: {
     isAll: {
       set (val) {
-        this.arr.forEach((ele) => (ele.c = val))
+        this.arr.forEach((item) => {
+          item.c = val
+        })
       },
       get () {
-        return this.arr.every((ele) => {
-          return ele.c
-        })
+        return this.arr.every((item) => item.c === true)
+        //every 查找到数组中不符合条件的元素 直接返回false  查找不到 返回true
       },
     },
   },
   methods: {
     btn () {
-      this.arr.forEach((ele) => {
-        ele.c = !ele.c
-      })
+      this.arr.forEach(item => item.c = !item.c)
     },
   },
 }

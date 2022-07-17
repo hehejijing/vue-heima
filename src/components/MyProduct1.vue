@@ -22,11 +22,11 @@ export default {
     },
   },
   methods: {
-    btn() {
-      this.obj.proprice--; // vue 取巧
+    btn () {
+      this.obj.proprice-- // vue 取巧
     },
   },
-};
+}
 </script>
 
 <style>

@@ -24,27 +24,27 @@
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
             <td :class="{ red: item.price > 100 }">{{ item.price }}</td>
-            <td>{{ item.time }}</td>
+            <td>{{ item.time | formatTime }}</td>
 
             <!-- 如果价格超过100，就有red这个类 -->
             <td class="red"></td>
             <td></td>
-            <td><a href="#">删除</a></td>
+            <td><a href="#" @click="list.splice(index, 1)">删除</a></td>
           </tr>
           <!-- 求和 -->
-          <tr style="background-color: #eee">
+          <tr style="background-color: #eee" v-if="list.length != 0">
             <td>统计:</td>
             <td colspan="2">总价钱为: {{ allprice }}</td>
             <td colspan="2">平均价: {{ avgPrice }}</td>
           </tr>
         </tbody>
-        <!-- 
-        <tfoot >
+        
+        <tfoot v-show="list.length == 0">
           <tr>
             <td colspan="5" style="text-align: center">暂无数据</td>
           </tr>
         </tfoot>
-            -->
+           
       </table>
 
       <!-- 添加资产 -->
@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import moment from "moment"
 // 铺设页面 1. 表格样式正确展示 2.数据渲染到页面
 // 1. 下载bootstrap, main.js引入bootstrap.css
 //    yarn add bootstrap
@@ -88,12 +89,7 @@ export default {
   name: "VueDemo",
   data () {
     return {
-      list: [
-        { id: 100, name: "外套", price: 199, time: new Date("2010-08-12") },
-        { id: 101, name: "裤子", price: 34, time: new Date("2013-09-01") },
-        { id: 102, name: "鞋", price: 25.4, time: new Date("2018-11-22") },
-        { id: 103, name: "头发", price: 19900, time: new Date("2020-12-12") },
-      ],
+      list: JSON.parse(localStorage.getItem("PList")) || [],
       name: "",
       price: 0,
     }
@@ -110,10 +106,17 @@ export default {
         name: this.name,
         price: this.price,
         time: new Date(),
-        id: this.list[this.list.length - 1].id + 1,
+        id: this.list[this.list.length - 1]
+          ? this.list[this.list.length - 1].id + 1
+          : 100,
       })
       this.name = ""
       this.price = 0
+    },
+  },
+  filters: {
+    formatTime: (val) => {
+      return moment(val).format("YYYY-MM-DD")
     },
   },
   computed: {
@@ -121,7 +124,15 @@ export default {
       return this.list.reduce((sum, obj) => (sum += obj.price), 0)
     },
     avgPrice () {
-      return (this.allprice / this.list.length).toFixed(2)//toFixed(2)保留两位小数
+      return (this.allprice / this.list.length).toFixed(2) //toFixed(2)保留两位小数
+    },
+  },
+  watch: {
+    list: {
+      handler () {
+        localStorage.setItem("PList", JSON.stringify(this.list))
+      },
+      deep: true,
     },
   },
 }
